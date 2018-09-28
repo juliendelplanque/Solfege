@@ -452,8 +452,7 @@ MusicNote >> hash [
 { #category : #printing }
 MusicNote >> innerPrintOn: aStream [
 	aStream
-		<< self name;
-		print: self octaveCount
+		<< self fullName
 ]
 
 { #category : #'chords - triads' }

@@ -70,6 +70,32 @@ MusicNoteTest >> testFlat [
 ]
 
 { #category : #tests }
+MusicNoteTest >> testFullAlternativeName [
+	self assert: cNote fullAlternativeName equals: 'C4'.
+	self assert: eNote fullAlternativeName equals: 'E4'.
+	self assert: bNote fullAlternativeName equals: 'B4'.
+	
+	self assert: eNote flat fullAlternativeName equals: 'Eb4'.
+	self assert: bNote flat fullAlternativeName equals: 'Bb4'.
+	
+	self assert: MusicNote E0 fullAlternativeName equals: 'E0'.
+	self assert: MusicNote B8 flat fullAlternativeName equals: 'Bb8'.
+]
+
+{ #category : #tests }
+MusicNoteTest >> testFullName [
+	self assert: cNote fullName equals: 'C4'.
+	self assert: eNote fullName equals: 'E4'.
+	self assert: bNote fullName equals: 'B4'.
+	
+	self assert: eNote flat fullName equals: 'D#4'.
+	self assert: bNote flat fullName equals: 'A#4'.
+	
+	self assert: MusicNote E0 fullName equals: 'E0'.
+	self assert: MusicNote B8 flat fullName equals: 'A#8'.
+]
+
+{ #category : #tests }
 MusicNoteTest >> testName [
 	self assert: cNote name equals: 'C'.
 	self assert: eNote name equals: 'E'.
@@ -77,6 +103,33 @@ MusicNoteTest >> testName [
 	
 	self assert: eNote flat name equals: 'D#'.
 	self assert: bNote flat name equals: 'A#'
+]
+
+{ #category : #tests }
+MusicNoteTest >> testOctaveCount [
+	self assert: MusicNote C0 octaveCount equals: 0.
+	self assert: MusicNote D0 octaveCount equals: 0.
+	self assert: MusicNote E0 octaveCount equals: 0.
+	self assert: MusicNote F0 octaveCount equals: 0.
+	self assert: MusicNote G0 octaveCount equals: 0.
+	self assert: MusicNote A0 octaveCount equals: 0.
+	self assert: MusicNote B0 octaveCount equals: 0.
+	
+	self assert: MusicNote C4 octaveCount equals: 4.
+	self assert: MusicNote D4 octaveCount equals: 4.
+	self assert: MusicNote E4 octaveCount equals: 4.
+	self assert: MusicNote F4 octaveCount equals: 4.
+	self assert: MusicNote G4 octaveCount equals: 4.
+	self assert: MusicNote A4 octaveCount equals: 4.
+	self assert: MusicNote B4 octaveCount equals: 4.
+	
+	self assert: MusicNote C8 octaveCount equals: 8.
+	self assert: MusicNote D8 octaveCount equals: 8.
+	self assert: MusicNote E8 octaveCount equals: 8.
+	self assert: MusicNote F8 octaveCount equals: 8.
+	self assert: MusicNote G8 octaveCount equals: 8.
+	self assert: MusicNote A8 octaveCount equals: 8.
+	self assert: MusicNote B8 octaveCount equals: 8.
 ]
 
 { #category : #tests }

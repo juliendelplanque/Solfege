@@ -58,8 +58,13 @@ MusicNoteTest >> testBeSubstractedFromMusicNote [
 { #category : #tests }
 MusicNoteTest >> testEquals [
 	self assert: cNote equals: MusicNote C4.
+	self deny: cNote = MusicNote C3.
+	
 	self assert: eNote equals: MusicNote E4.
-	self assert: bNote equals: MusicNote B4
+	self deny: cNote = MusicNote E5.
+	
+	self assert: bNote equals: MusicNote B4.
+	self deny: cNote = MusicNote B0.
 ]
 
 { #category : #tests }
@@ -130,6 +135,30 @@ MusicNoteTest >> testOctaveCount [
 	self assert: MusicNote G8 octaveCount equals: 8.
 	self assert: MusicNote A8 octaveCount equals: 8.
 	self assert: MusicNote B8 octaveCount equals: 8.
+]
+
+{ #category : #tests }
+MusicNoteTest >> testPowerchord [
+	self assert: cNote powerchord equals: (MusicChord notes: { MusicNote C4 . MusicNote G4 }).
+	
+	self assert: eNote powerchord equals: (MusicChord notes: { MusicNote E4 . MusicNote B4 }).
+	
+	self assert: bNote powerchord equals: (MusicChord notes: { MusicNote B4 . MusicNote F5 sharp }).
+]
+
+{ #category : #tests }
+MusicNoteTest >> testPowerchordWithOctave [
+	self
+		assert: cNote powerchordWithOctave
+		equals: (MusicChord notes: { MusicNote C4 . MusicNote G4 . MusicNote C5 }).
+	
+	self
+		assert: eNote powerchordWithOctave
+		equals: (MusicChord notes: { MusicNote E4 . MusicNote B4 . MusicNote E5 }).
+	
+	self
+		assert: bNote powerchordWithOctave
+		equals: (MusicChord notes: { MusicNote B4 . MusicNote F5 sharp . MusicNote B5 }).
 ]
 
 { #category : #tests }

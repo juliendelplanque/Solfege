@@ -237,3 +237,8 @@ MusicInterval >> semitones: anInteger [
 			self error: 'The number of semitones for a music interval should always be a positive integer.' ].
 	semitones := anInteger
 ]
+
+{ #category : #accessing }
+MusicInterval >> shortName [
+	^ self class shortNameFor: self
+]

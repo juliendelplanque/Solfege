@@ -47,6 +47,11 @@ MusicIntervalTest >> testEquals [
 ]
 
 { #category : #tests }
+MusicIntervalTest >> testFullName [
+	self assert: musicInterval fullName equals: 'Minor second'
+]
+
+{ #category : #tests }
 MusicIntervalTest >> testMultiplyBy [
 	self assert: (musicInterval multiplyBy: 3) semitones equals: 3.
 	
@@ -68,4 +73,9 @@ MusicIntervalTest >> testSemitones [
 	musicInterval semitones: 42.
 	
 	self assert: musicInterval semitones equals: 42.
+]
+
+{ #category : #tests }
+MusicIntervalTest >> testShortName [
+	self assert: musicInterval shortName equals: 'm2'
 ]

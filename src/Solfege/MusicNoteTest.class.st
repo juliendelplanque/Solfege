@@ -18,6 +18,33 @@ MusicNoteTest >> setUp [
 ]
 
 { #category : #tests }
+MusicNoteTest >> testAlternativeName [
+	self assert: cNote alternativeName equals: 'C'.
+	self assert: eNote alternativeName equals: 'E'.
+	self assert: bNote alternativeName equals: 'B'.
+	
+	self assert: eNote flat alternativeName equals: 'Eb'.
+	self assert: bNote flat alternativeName equals: 'Bb'
+]
+
+{ #category : #tests }
+MusicNoteTest >> testBeAddedToMusicChord [
+	| expected |
+	expected := MusicChord notes: { cNote . eNote . bNote }.
+	
+	self
+		assert: (cNote beAddedToMusicChord: (MusicChord notes: { eNote . bNote }))
+		equals: expected
+]
+
+{ #category : #tests }
+MusicNoteTest >> testBeAddedToMusicNote [
+	self
+		assert: (cNote beAddedToMusicNote: bNote)
+		equals: (MusicChord notes: { cNote . bNote })
+]
+
+{ #category : #tests }
 MusicNoteTest >> testBeSubstractedFromMusicNote [
 	self assert: (cNote beSubstractedFromMusicNote: MusicNote C5) equals: 1 perfectOctave.
 	self assert: (cNote beSubstractedFromMusicNote: MusicNote C3) equals: 1 perfectOctave.
@@ -40,6 +67,16 @@ MusicNoteTest >> testFlat [
 	self assert: cNote flat equals: MusicNote B3.
 	self assert: eNote flat equals: MusicNote E4 - 1 semitone.
 	self assert: bNote flat equals: MusicNote B4 - 1 semitone.
+]
+
+{ #category : #tests }
+MusicNoteTest >> testName [
+	self assert: cNote name equals: 'C'.
+	self assert: eNote name equals: 'E'.
+	self assert: bNote name equals: 'B'.
+	
+	self assert: eNote flat name equals: 'D#'.
+	self assert: bNote flat name equals: 'A#'
 ]
 
 { #category : #tests }

@@ -23,9 +23,27 @@ MusicChord >> + anObject [
 	^ anObject beAddedToMusicChord: self
 ]
 
+{ #category : #comparing }
+MusicChord >> = anObject [
+	"Answer whether the receiver and anObject represent the same object."
+
+	self == anObject
+		ifTrue: [ ^ true ].
+	self class = anObject class
+		ifFalse: [ ^ false ].
+	^ notes hasEqualElements: anObject notes
+]
+
 { #category : #adding }
 MusicChord >> addNote: aMusicNote [
 	notes add: aMusicNote
+]
+
+{ #category : #comparing }
+MusicChord >> hash [
+	"Answer an integer value that is related to the identity of the receiver."
+
+	^ notes hash
 ]
 
 { #category : #initialization }

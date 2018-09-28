@@ -432,6 +432,16 @@ MusicNote >> flat [
 	^ self - 1 semitone
 ]
 
+{ #category : #accessing }
+MusicNote >> fullAlternativeName [
+	^ self alternativeName , self octaveCount asString
+]
+
+{ #category : #accessing }
+MusicNote >> fullName [
+	^ self name , self octaveCount asString
+]
+
 { #category : #comparing }
 MusicNote >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
@@ -463,7 +473,7 @@ MusicNote >> name [
 
 { #category : #private }
 MusicNote >> notesAlternativeNames [
-	^ #('C' 'Cb' 'D' 'Db' 'E' 'F' 'Fb' 'G' 'Gb' 'A' 'Ab' 'B')
+	^ #('C' 'Db' 'D' 'Eb' 'E' 'F' 'Gb' 'G' 'Ab' 'A' 'Bb' 'B')
 ]
 
 { #category : #private }

@@ -418,7 +418,8 @@ MusicNote >> beAddedToMusicNote: aMusicNote [
 
 { #category : #arithmetic }
 MusicNote >> beSubstractedFromMusicNote: aMusicNote [
-	^ MusicInterval semitones: aMusicNote semitonesFromC0 - self semitonesFromC0
+	"Returns the distance between aMusicNote and self as a MusicInterval."
+	^ MusicInterval semitones: (aMusicNote semitonesFromC0 - self semitonesFromC0) abs
 ]
 
 { #category : #'chords - triads' }

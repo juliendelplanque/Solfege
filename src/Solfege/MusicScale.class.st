@@ -3,7 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'tonic',
-		'intervals'
+		'ascendingIntervals'
 	],
 	#category : #'Solfege-Core'
 }
@@ -11,17 +11,17 @@ Class {
 { #category : #'instance creation' }
 MusicScale class >> harmonicMinor: aMusicNote [
 	| naturalMinorIntervals |
-	naturalMinorIntervals := (self naturalMinor: aMusicNote) intervals.
+	naturalMinorIntervals := (self naturalMinor: aMusicNote) ascendingIntervals.
 	^ self
 		tonic: aMusicNote
-		intervals: (naturalMinorIntervals
+		ascendingIntervals: (naturalMinorIntervals
 						at: 6 put: (naturalMinorIntervals at: 6) + 1 semitone;
 						yourself)
 ]
 
 { #category : #'instance creation' }
 MusicScale class >> major: aMusicNote [
-	^ self tonic: aMusicNote intervals: { 
+	^ self tonic: aMusicNote ascendingIntervals: { 
 		1  tone.
 		1  tone.
 		1  semitone.
@@ -34,7 +34,7 @@ MusicScale class >> major: aMusicNote [
 { #category : #'instance creation' }
 MusicScale class >> melodicMinor: aMusicNote [
 	| naturalMinorIntervals |
-	naturalMinorIntervals := (self naturalMinor: aMusicNote) intervals.
+	naturalMinorIntervals := (self naturalMinor: aMusicNote) ascendingIntervals.
 	^ MusicAsymmetricalScale
 		tonic: aMusicNote
 		forwardIntervals: (naturalMinorIntervals
@@ -46,7 +46,7 @@ MusicScale class >> melodicMinor: aMusicNote [
 
 { #category : #'instance creation' }
 MusicScale class >> naturalMinor: aMusicNote [
-	^ self tonic: aMusicNote intervals: { 
+	^ self tonic: aMusicNote ascendingIntervals: { 
 		1  tone.
 		1  semitone.
 		1  tone.
@@ -57,46 +57,36 @@ MusicScale class >> naturalMinor: aMusicNote [
 ]
 
 { #category : #'instance creation' }
-MusicScale class >> tonic: aMusicNote intervals: aCollectionOfMusicIntervals [
+MusicScale class >> tonic: aMusicNote ascendingIntervals: aCollectionOfMusicIntervals [
 	^ self new
 		tonic: aMusicNote;
-		intervals: aCollectionOfMusicIntervals;
+		ascendingIntervals: aCollectionOfMusicIntervals;
 		yourself
 ]
 
 { #category : #accessing }
-MusicScale >> backwardIntervals [
-	^ self forwardIntervals reversed
+MusicScale >> ascendingIntervals [
+	^ ascendingIntervals
 ]
 
 { #category : #accessing }
-MusicScale >> backwardIntervals: aObject [
+MusicScale >> ascendingIntervals: anObject [
+	ascendingIntervals := anObject
+]
+
+{ #category : #accessing }
+MusicScale >> descendingIntervals [
+	^ self ascendingIntervals reversed
+]
+
+{ #category : #accessing }
+MusicScale >> descendingIntervals: aObject [
 	self error: 'AMusicScale''s backward interval is the forward interval reversed. It should not be set thus.'
 ]
 
 { #category : #accessing }
 MusicScale >> dominant [
 	^ self noteAt: 5
-]
-
-{ #category : #accessing }
-MusicScale >> forwardIntervals [
-	^ self intervals
-]
-
-{ #category : #accessing }
-MusicScale >> forwardIntervals: anObject [
-	self intervals: anObject
-]
-
-{ #category : #accessing }
-MusicScale >> intervals [
-	^ intervals
-]
-
-{ #category : #accessing }
-MusicScale >> intervals: anObject [
-	intervals := anObject
 ]
 
 { #category : #accessing }
@@ -147,5 +137,5 @@ MusicScale >> tonic: anObject [
 
 { #category : #private }
 MusicScale >> tonicAddedToIntervalUpTo: index [
-	^ self tonic + ((1 to: index) sum: [ :i | self intervals at: i ])
+	^ self tonic + ((1 to: index) sum: [ :i | self ascendingIntervals at: i ])
 ]

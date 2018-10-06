@@ -11,17 +11,17 @@ Class {
 MusicAsymmetricalScale class >> tonic: aMusicNote forwardIntervals: forwardIntervals backwardIntervals: backwardIntervals [
 	^ self new
 		tonic: aMusicNote;
-		forwardIntervals:forwardIntervals;
-		backwardIntervals: backwardIntervals;
+		ascendingIntervals:forwardIntervals;
+		descendingIntervals: backwardIntervals;
 		yourself
 ]
 
 { #category : #accessing }
-MusicAsymmetricalScale >> backwardIntervals [
+MusicAsymmetricalScale >> descendingIntervals [
 	^ backwardIntervals
 ]
 
 { #category : #accessing }
-MusicAsymmetricalScale >> backwardIntervals: anObject [
+MusicAsymmetricalScale >> descendingIntervals: anObject [
 	backwardIntervals := anObject
 ]

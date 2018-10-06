@@ -173,6 +173,16 @@ MusicInterval >> * anInteger [
 	^ self multiplyBy: anInteger
 ]
 
+{ #category : #arithmetic }
+MusicInterval >> + anObject [
+	^ anObject beAddedToMusicInterval: self
+]
+
+{ #category : #arithmetic }
+MusicInterval >> - anObject [
+	^ anObject beSubstractedFromMusicInterval: self
+]
+
 { #category : #comparing }
 MusicInterval >> = anObject [
 	"Answer whether the receiver and anObject represent the same object."
@@ -185,8 +195,23 @@ MusicInterval >> = anObject [
 ]
 
 { #category : #arithmetic }
+MusicInterval >> beAddedToMusicInterval: aMusicInterval [
+	^ self class semitones: aMusicInterval semitones + self semitones
+]
+
+{ #category : #arithmetic }
 MusicInterval >> beAddedToMusicNote: aMusicNote [
 	^ aMusicNote class semitonesFromC0: (aMusicNote semitonesFromC0 + self semitones)
+]
+
+{ #category : #arithmetic }
+MusicInterval >> beSubstractedFromMusicInterval: aMusicInterval [
+	| result |
+	result := aMusicInterval semitones - self semitones.
+	result < 0
+		ifTrue: [ self error: 'Music interval substraction can not lead to a negative interval.' ].
+	
+	^ self class semitones: aMusicInterval semitones - self semitones
 ]
 
 { #category : #arithmetic }

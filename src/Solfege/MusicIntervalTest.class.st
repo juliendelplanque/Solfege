@@ -14,6 +14,11 @@ MusicIntervalTest >> setUp [
 ]
 
 { #category : #tests }
+MusicIntervalTest >> testBeAddedToMusicInterval [
+	self assert: (musicInterval beAddedToMusicInterval: 1 semitone) equals: 2 semitones
+]
+
+{ #category : #tests }
 MusicIntervalTest >> testBeAddedToMusicNote [
 	self assert: (musicInterval beAddedToMusicNote: MusicNote C) equals: MusicNote C sharp.
 	
@@ -24,6 +29,13 @@ MusicIntervalTest >> testBeAddedToMusicNote [
 	self assert: (musicInterval beAddedToMusicNote: MusicNote C) equals: MusicNote D sharp.
 	
 	self assert: (musicInterval beAddedToMusicNote: MusicNote E) equals: MusicNote G.
+]
+
+{ #category : #tests }
+MusicIntervalTest >> testBeSubstractedFromMusicInterval [
+	self assert: (musicInterval beSubstractedFromMusicInterval: 1 semitone) equals: 0 semitone.
+	
+	self should: [ musicInterval beSubstractedFromMusicInterval: 0 semitone ] raise: Error
 ]
 
 { #category : #tests }

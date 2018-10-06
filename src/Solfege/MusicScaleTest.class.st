@@ -39,8 +39,8 @@ MusicScaleTest >> testSubmediant [
 ]
 
 { #category : #tests }
-MusicScaleTest >> testSuperTonic [
-	self assert: scale superTonic equals: MusicNote D4
+MusicScaleTest >> testSupertonic [
+	self assert: scale supertonic equals: MusicNote D4
 ]
 
 { #category : #tests }
